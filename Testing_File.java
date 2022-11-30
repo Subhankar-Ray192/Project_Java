@@ -1,4 +1,4 @@
-class HelloWorld
+class Testing_File
 {
   public static void main(String args[])
   {
