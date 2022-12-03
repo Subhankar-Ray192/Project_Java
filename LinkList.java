@@ -12,6 +12,14 @@ class LinkList
           link=null;   
         }
     }
+
+   void insertF(int d)
+    {
+      Node newN=new Node();
+      newN.data=d;
+      newN.link=head.link;
+      head.link=newN;
+    }
   
    void insertB(int d)
     {
@@ -45,6 +53,19 @@ class LinkList
          }
     }
 
+  void delF()
+   {
+     if(head.link==null)
+      {
+         System.out.println("\nError:Underflow");
+      }
+     else
+      {
+        System.out.println("\nDeleted: "+((head.link).data));
+        head.link=(head.link).link;
+      }
+   }
+      
   void delB()
    {
      if(head.link==null)
@@ -72,10 +93,12 @@ class LinkList
      do
        {
      	Scanner sc=new Scanner(System.in);
-     	System.out.println("\nPress 1. Insert-Back");
-     	System.out.println("\nPress 2. Delete-Back");
-     	System.out.println("\nPress 3. Display");
-     	System.out.println("\nPress 4. Exit");
+     	System.out.println("\nPress 1. Insert-Front");
+        System.out.println("\nPress 2. Insert-Back");
+        System.out.println("\nPress 3. Delete-Front");
+     	System.out.println("\nPress 4. Delete-Back");
+     	System.out.println("\nPress 5. Display");
+     	System.out.println("\nPress 6. Exit");
      	System.out.print("\nEnter Choice:");
         System.out.println();
      	n=sc.nextInt();
@@ -83,15 +106,27 @@ class LinkList
       		{
          		case 1: System.out.print("\nEnter Data:");
                                 int d=sc.nextInt();
-                                ob.insertB(d);
+                                ob.insertF(d);
                                 break;
-         		case 2: ob.delB();
+
+         		case 2: System.out.print("\nEnter Data:");
+                                int d1=sc.nextInt();
+                                ob.insertB(d1);
                                 break;
-         		case 3: ob.display();
+
+         		case 3: ob.delF();
                                 break;
-         		default: break;
+                        
+                        case 4: ob.delB();
+                                break;
+                                
+         		case 5: ob.display();
+                                break;
+
+         		default: n=6;
+                                 break;
       		}  
-   	}while(n!=4);
+   	}while(n!=6);
     }
 }
   
