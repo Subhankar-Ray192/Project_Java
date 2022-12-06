@@ -1,5 +1,5 @@
 import java.util.*;
-class LinkList
+abstract class LinkList
 {
    Node head = new Node();
    class Node
@@ -53,17 +53,16 @@ class LinkList
          }
     }
 
-  void delF()
+  int delF()
    {
      if(head.link==null)
       {
          System.out.println("\nError:Underflow");
+         return -1;
       }
-     else
-      {
-        System.out.println("\nDeleted: "+((head.link).data));
+        int r=((head.link).data);
         head.link=(head.link).link;
-      }
+        return r;
    }
       
   void delB()
@@ -85,48 +84,5 @@ class LinkList
      	ptr.link=null;
      }
    }
-
-  public static void main(String args[])
-   {
-     int n=0;
-     LinkList ob=new LinkList();
-     do
-       {
-     	Scanner sc=new Scanner(System.in);
-     	System.out.println("\nPress 1. Insert-Front");
-        System.out.println("\nPress 2. Insert-Back");
-        System.out.println("\nPress 3. Delete-Front");
-     	System.out.println("\nPress 4. Delete-Back");
-     	System.out.println("\nPress 5. Display");
-     	System.out.println("\nPress 6. Exit");
-     	System.out.print("\nEnter Choice:");
-        System.out.println();
-     	n=sc.nextInt();
-     		switch(n)
-      		{
-         		case 1: System.out.print("\nEnter Data:");
-                                int d=sc.nextInt();
-                                ob.insertF(d);
-                                break;
-
-         		case 2: System.out.print("\nEnter Data:");
-                                int d1=sc.nextInt();
-                                ob.insertB(d1);
-                                break;
-
-         		case 3: ob.delF();
-                                break;
-                        
-                        case 4: ob.delB();
-                                break;
-                                
-         		case 5: ob.display();
-                                break;
-
-         		default: n=6;
-                                 break;
-      		}  
-   	}while(n!=6);
-    }
 }
   
