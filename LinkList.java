@@ -1,4 +1,3 @@
-import java.util.*;
 abstract class LinkList
 {
    Node head = new Node();
@@ -34,7 +33,7 @@ abstract class LinkList
             
     }
   
-   void display()
+   /*void display()
     {
        if(head.link==null)
         {
@@ -51,7 +50,7 @@ abstract class LinkList
             }
            System.out.println(ptr.data+".");
          }
-    }
+    }*/
 
   int delF()
    {
@@ -84,5 +83,14 @@ abstract class LinkList
      	ptr.link=null;
      }
    }
+
+   int displayF()
+    {
+       if(head.link==null)
+         {
+            return -1;
+         }
+       return ((head.link).data);
+    }
 }
   
