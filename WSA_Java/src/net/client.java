@@ -7,9 +7,9 @@ class Packet {
 	private Map<Integer,Integer> val;
 	private String IP;
 
-	Packet(){
+	Packet(String IP){
 		val = new HashMap<>();
-		this.IP = "192.168.134.65"; 
+		this.IP = IP; 
 	}
 
 	public int getPort(int port){
@@ -36,9 +36,9 @@ class Client {
 	
 	private Packet packet;
 	
-	Client()throws IOException{
+	Client(String IP)throws IOException{
 		
-		packet = new Packet();
+		packet = new Packet(IP.trim());
 		packet.setPort(4000);
 		
 		Socket socket = new Socket(packet.getIP(),packet.getPort(4000));
@@ -56,7 +56,7 @@ class Client {
 	}
 
 	public static void main(String[] args)throws IOException{
-		Client obj = new Client();
+		Client obj = new Client(args[0]);
 	}
 }
 
