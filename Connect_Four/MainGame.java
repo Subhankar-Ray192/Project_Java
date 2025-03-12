@@ -5,6 +5,7 @@ class GameBoard
 	public int board[][];
 	public int row;
         public int col;
+	public int win_streak[];
 	
 	int col_row_ptr[];
 	
@@ -12,8 +13,13 @@ class GameBoard
 	
 	GameBoard()
 	{
+		this.win_streak = new int[2];
+		this.win_streak[0] = 4;
+		this.win_streak[1] = 4;
+		
 		this.row = 6;
 		this.col = 7;
+		
                 this.board = new int[this.row][this.col];
 		this.board_init();
 		
@@ -28,12 +34,10 @@ class GameBoard
 		class GameAgent
 		{
 			int token;
-			int turn_count;
 			
 			GameAgent(int token)
 			{
 				this.token = token;
-				this.turn_count = 0;
 			}
 			
 			int[] v_move(GameBoard obj)
@@ -46,7 +50,6 @@ class GameBoard
 					{
 						if(obj.board[obj.col_row_ptr[i] - 1][i] == 0)
 						{
-							turn_count++;
 							obj.board[obj.col_row_ptr[i] - 1][i] = this.token;
 							obj.col_row_ptr[i] = obj.col_row_ptr[i] - 1;
 
@@ -132,25 +135,22 @@ class MainGame
 		obj.board_status();
 		
 		int turn = 0;
-		int var[] = new int[2];
+		int var[][] = new int[this.win_streak[0]][2];
 		
 		while(turn < 15)
 		{
 			if(turn%2==0)
 			{
-				var = obj.player[0].v_move(obj);
+				var[this.win_streak[0]] = obj.player[0].v_move(obj);
+				this.win_streak[0] = this.win_streak[0] - 1;
 			}
 			else
 			{
-				var = obj.player[1].ran_move(obj);
+				var[this.win_streak[1]] = obj.player[1].ran_move(obj);
+				this.win_streak[1] = this.win_streak[1] - 1;
 			}
 			turn++;
 			
-			if(obj.player[turn%2].turn_count == 4)
-			{
-				System.out.println("GG");
-				break;
-			}
 		}
 
 		obj.board_status();
